@@ -3,13 +3,7 @@ using UnityEngine;
 
 namespace SampleGame
 {
-    public interface ICharacter
-    {
-        void Move(Vector3 direction, float deltaTime);
-        Vector3 GetPosition();
-    }
-
-    public sealed class Character : MonoBehaviour, ICharacter
+    public sealed class Character : MonoBehaviour
     {
         [SerializeField]
         private float _speed = 2.5f;
