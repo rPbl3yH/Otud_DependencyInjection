@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace SampleGame
@@ -19,10 +18,5 @@ namespace SampleGame
         {
             _character.Move(_moveInput.GetDirection(), Time.deltaTime);
         }
-    }
-
-    [AttributeUsage(AttributeTargets.Method)]
-    public class InjectAttribute : Attribute
-    {
     }
 }
