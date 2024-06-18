@@ -12,6 +12,7 @@ namespace SampleGame
         {
             _character = character;
             _moveInput = moveInput;
+            Debug.Log("Move input construct");
         }
 
         private void Update()

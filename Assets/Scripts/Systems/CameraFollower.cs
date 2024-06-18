@@ -17,6 +17,7 @@ namespace SampleGame
         public void Construct(ICharacter character)
         {
             _character = character;
+            Debug.Log("Camera follower construct");
         }
 
         private void LateUpdate()

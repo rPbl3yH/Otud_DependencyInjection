@@ -2,15 +2,15 @@ using UnityEngine;
 
 namespace SampleGame
 {
-    public class ServicesInstaller : MonoBehaviour
+    public class ServicesInstaller : Installer
     {
         [SerializeField] private Character _character;
         [SerializeField] private MoveInput _moveInput;
         
-        private void Awake()
+        public override void Install(DiContainer diContainer)
         {
-            ServiceLocator.AddService<ICharacter>(_character);
-            ServiceLocator.AddService<MoveInput>(_moveInput);
+            diContainer.AddService<ICharacter>(_character);
+            diContainer.AddService<MoveInput>(_moveInput);
         }
     }
 }
