@@ -253,7 +253,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 856843651}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -381,6 +381,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 986265226}
+  - component: {fileID: 986265228}
+  - component: {fileID: 986265229}
   m_Layer: 0
   m_Name: '[System]'
   m_TagString: Untagged
@@ -405,6 +407,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &986265228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 986265225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 712ad7781ca64145bf810a0a1fea9aab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _monoInstallers:
+  - {fileID: 986265229}
+--- !u!114 &986265229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 986265225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14a860dec65a4ee0be506b6996eaa7eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _character: {fileID: 571570485244958766}
+  _moveInput: {fileID: 856843653}
 --- !u!1 &1060751495
 GameObject:
   m_ObjectHideFlags: 0
@@ -503,7 +533,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _offset: {x: 0, y: 6, z: -10}
   _targetCamera: {fileID: 1060751498}
-  _character: {fileID: 571570485244958766}
 --- !u!1 &1146400790
 GameObject:
   m_ObjectHideFlags: 0
@@ -548,8 +577,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6da9799a6ef477fb7f3d925b83fa381, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _character: {fileID: 571570485244958766}
-  _moveInput: {fileID: 856843653}
 --- !u!1 &1366530278
 GameObject:
   m_ObjectHideFlags: 0

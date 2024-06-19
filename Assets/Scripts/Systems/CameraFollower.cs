@@ -11,8 +11,13 @@ namespace SampleGame
         [SerializeField]
         private Camera _targetCamera;
 
-        [SerializeField] 
-        private Character _character;
+        private ICharacter _character;
+
+        [Inject]
+        public void Construct(ICharacter character)
+        {
+            _character = character;
+        }
 
         private void LateUpdate()
         {
