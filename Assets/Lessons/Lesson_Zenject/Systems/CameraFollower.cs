@@ -1,7 +1,6 @@
-using System;
 using UnityEngine;
 
-namespace SampleGame
+namespace Lessons.Lesson_Zenject
 {
     public sealed class CameraFollower : MonoBehaviour
     {
@@ -11,13 +10,8 @@ namespace SampleGame
         [SerializeField]
         private Camera _targetCamera;
 
-        private ICharacter _character;
-
-        [Inject]
-        public void Construct(ICharacter character)
-        {
-            _character = character;
-        }
+        [SerializeField]
+        private Character _character;
 
         private void LateUpdate()
         {

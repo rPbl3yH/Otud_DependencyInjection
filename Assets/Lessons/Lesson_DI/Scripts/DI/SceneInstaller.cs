@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace SampleGame
+namespace Lessons.Lesson_DI
 {
     public class SceneInstaller : MonoInstaller
     {

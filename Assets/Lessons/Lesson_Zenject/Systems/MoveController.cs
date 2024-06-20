@@ -1,21 +1,14 @@
-using System;
 using UnityEngine;
 
-namespace SampleGame
+namespace Lessons.Lesson_Zenject
 {
     public sealed class MoveController : MonoBehaviour
     {
-        private ICharacter _character;
+        [SerializeField]
+        private Character _character;
         
-        [Inject]
+        [SerializeField]
         private MoveInput _moveInput;
-
-        [Inject]
-        public void Construct(ICharacter character)
-        {
-            _character = character;
-            // _moveInput = moveInput;
-        }
 
         private void Update()
         {

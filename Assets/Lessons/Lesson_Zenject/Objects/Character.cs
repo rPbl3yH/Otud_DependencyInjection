@@ -1,7 +1,6 @@
-using System;
 using UnityEngine;
 
-namespace SampleGame
+namespace Lessons.Lesson_Zenject
 {
     public interface ICharacter
     {

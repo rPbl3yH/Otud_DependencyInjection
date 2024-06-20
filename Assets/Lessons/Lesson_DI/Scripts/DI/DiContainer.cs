@@ -1,10 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using SampleGame;
 using UnityEngine;
 
-namespace SampleGame
+namespace Lessons.Lesson_DI
 {
     public class DiContainer : MonoBehaviour
     {

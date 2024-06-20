@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace SampleGame
+namespace Lessons.Lesson_Zenject
 {
     public sealed class MoveInput : MonoBehaviour
     {

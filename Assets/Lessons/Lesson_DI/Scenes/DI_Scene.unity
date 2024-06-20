@@ -381,8 +381,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 986265226}
+  - component: {fileID: 986265227}
   - component: {fileID: 986265228}
-  - component: {fileID: 986265229}
   m_Layer: 0
   m_Name: '[System]'
   m_TagString: Untagged
@@ -407,7 +407,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &986265228
+--- !u!114 &986265227
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -420,8 +420,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _monoInstallers:
-  - {fileID: 986265229}
---- !u!114 &986265229
+  - {fileID: 986265228}
+--- !u!114 &986265228
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -434,7 +434,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _character: {fileID: 571570485244958766}
-  _moveInput: {fileID: 856843653}
 --- !u!1 &1060751495
 GameObject:
   m_ObjectHideFlags: 0
