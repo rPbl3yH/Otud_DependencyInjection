@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Lessons/Lesson_Zenject/Scenes/BootstrapScene.unity
+    path: Assets/Lessons/Lesson_Zenject/Scenes/CoreLevelScene.unity
     guid: 4eb2aac7c3462420fb062eb40f163b75
   - enabled: 1
     path: Assets/Lessons/Lesson_Zenject/Scenes/LevelScene.unity
@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Lessons/Lesson_Zenject/Scenes/Zenject_Scene.unity
     guid: 22ad2607b9dca42b39cc51477bf733d6
+  - enabled: 1
+    path: Assets/Lessons/Lesson_Zenject/Scenes/LevelScene 1.unity
+    guid: 1bdfb5a0a32ba4042bda3968efad12fb
   m_configObjects: {}
