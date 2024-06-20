@@ -1,11 +1,12 @@
 using UnityEngine;
+using Zenject;
 
 namespace Lessons.Lesson_Zenject
 {
     public sealed class MoveController : MonoBehaviour
     {
-        [SerializeField]
-        private Character _character;
+        [Inject]
+        private ICharacter _character;
         
         [SerializeField]
         private MoveInput _moveInput;
