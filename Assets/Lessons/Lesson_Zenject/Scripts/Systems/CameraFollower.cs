@@ -1,19 +1,20 @@
+using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 namespace Lessons.Lesson_Zenject
 {
-    public sealed class CameraFollower : MonoBehaviour
+    public sealed class CameraFollower : ILateTickable
     {
-        [SerializeField]
-        private Vector3 _offset;
+        private Vector3 _offset = new Vector3(0f, 7f, -10f);
 
-        [SerializeField]
+        [Inject]
         private Camera _targetCamera;
 
-        [SerializeField]
-        private Character _character;
+        [Inject]
+        private ICharacter _character;
 
-        private void LateUpdate()
+        void ILateTickable.LateTick()
         {
             var cameraPosition = _character.GetPosition() + _offset;
             _targetCamera.transform.position = cameraPosition;

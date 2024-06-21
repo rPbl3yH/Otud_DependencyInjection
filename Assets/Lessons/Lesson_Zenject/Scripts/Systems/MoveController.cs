@@ -1,16 +1,22 @@
+using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 namespace Lessons.Lesson_Zenject
 {
-    public sealed class MoveController : MonoBehaviour
+    public sealed class MoveController : ITickable
     {
-        [SerializeField]
-        private Character _character;
-        
-        [SerializeField]
-        private MoveInput _moveInput;
+        private ICharacter _character;
+        private IMoveInput _moveInput;
 
-        private void Update()
+        [Inject]
+        public void Construct(IMoveInput moveInput, ICharacter character)
+        {
+            _moveInput = moveInput;
+            _character = character;
+        }
+
+        void ITickable.Tick()
         {
             _character.Move(_moveInput.GetDirection(), Time.deltaTime);
         }
