@@ -4,14 +4,5 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes:
-  - enabled: 1
-    path: Assets/Lessons/Lesson_Zenject/Scenes/BootstrapScene.unity
-    guid: 4eb2aac7c3462420fb062eb40f163b75
-  - enabled: 1
-    path: Assets/Lessons/Lesson_Zenject/Scenes/LevelScene.unity
-    guid: 8dc83da5e8aa343df8857d6afeea81bb
-  - enabled: 1
-    path: Assets/Lessons/Lesson_Zenject/Scenes/Zenject_Scene.unity
-    guid: 22ad2607b9dca42b39cc51477bf733d6
+  m_Scenes: []
   m_configObjects: {}

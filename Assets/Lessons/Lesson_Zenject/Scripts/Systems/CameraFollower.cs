@@ -1,5 +1,4 @@
 using UnityEngine;
-using Zenject;
 
 namespace Lessons.Lesson_Zenject
 {
@@ -11,7 +10,7 @@ namespace Lessons.Lesson_Zenject
         [SerializeField]
         private Camera _targetCamera;
 
-        [Inject]
+        [SerializeField]
         private Character _character;
 
         private void LateUpdate()
