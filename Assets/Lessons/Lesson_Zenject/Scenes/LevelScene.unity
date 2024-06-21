@@ -372,7 +372,7 @@ MonoBehaviour:
   _monoInstallers:
   - {fileID: 986265231}
   _installerPrefabs: []
-  _autoRun: 1
+  _autoRun: 0
   OnPreInstall:
     m_PersistentCalls:
       m_Calls: []

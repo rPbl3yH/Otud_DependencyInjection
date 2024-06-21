@@ -12,7 +12,7 @@ namespace Lessons.Lesson_DI
 
         [Inject]
         private ICharacter _character;
-        
+
         private void LateUpdate()
         {
             var cameraPosition = _character.GetPosition() + _offset;

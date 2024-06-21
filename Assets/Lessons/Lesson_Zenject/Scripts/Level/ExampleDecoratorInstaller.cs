@@ -10,6 +10,7 @@ namespace Lessons.Lesson_Zenject
         public override void InstallBindings()
         {
             Container.Bind<ITickable>().To<TestHotKeysAdder>().AsSingle();
+            Container.BindInterfacesAndSelfTo<Character>().FromInstance(_character).AsSingle();
         }
     }
 }
