@@ -14,11 +14,7 @@ namespace Lessons.Meta.Lesson_Inventory
         
         [ShowInInspector] 
         private Dictionary<InventoryItem, int> _inventory = new();
-
-        private InventoryItemAdder;
-        private InventoryItemRemover;
-        private InventoryItemConsumer;
-
+        
         public void ConsumeItem(InventoryItem otherItem)
         {
             if (TryFindItem(otherItem, out var item))
