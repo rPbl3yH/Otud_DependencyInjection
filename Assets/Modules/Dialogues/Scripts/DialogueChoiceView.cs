@@ -5,19 +5,19 @@ using UnityEngine.UIElements;
 
 namespace Modules.Dialogues
 {
-    public class DialogueChoiceView : VisualElement
+    public sealed class DialogueChoiceView : VisualElement
     {
         public event Action<DialogueChoiceView> OnDelete;
 
-        private TextField _textAnswer;
-        private Port _port;
+        private TextField textAnswer;
+        private Port port;
 
         public DialogueChoiceView(string answer)
         {
-            CreateButtonDelete();
-            CreateTextAnswer(answer);
-            CreatePortOutput();
-            style.flexDirection = FlexDirection.Row;
+            this.CreateButtonDelete();
+            this.CreateTextAnswer(answer);
+            this.CreatePortOutput();
+            this.style.flexDirection = FlexDirection.Row;
         }
 
         private void CreateButtonDelete()
@@ -25,15 +25,15 @@ namespace Modules.Dialogues
             Button button = new Button
             {
                 text = "X",
-                clickable = new Clickable(OnDeleteClicked)
+                clickable = new Clickable(this.OnDeleteClicked)
             };
             button.AddToClassList("dialogue-node-remove-choice-button");
-            Add(button);
+            this.Add(button);
         }
 
         private void CreateTextAnswer(string answer)
         {
-            _textAnswer = new TextField
+            this.textAnswer = new TextField
             {
                 value = answer,
                 multiline = false,
@@ -42,34 +42,34 @@ namespace Modules.Dialogues
                     width = 128
                 }
             };
-            Add(_textAnswer);
+            this.Add(this.textAnswer);
         }
 
         public Port GetPort()
         {
-            return _port;
+            return this.port;
         }
 
         public bool IsPort(Port port)
         {
-            return _port == port;
+            return this.port == port;
         }
 
         private void CreatePortOutput()
         {
-            _port = Port.Create<Edge>(Orientation.Horizontal, Direction.Output, Port.Capacity.Single, null);
-            _port.portColor = Color.yellow;
-            Add(_port);
+            this.port = Port.Create<DialogueEdgeView>(Orientation.Horizontal, Direction.Output, Port.Capacity.Single, null);
+            this.port.portColor = Color.yellow;
+            this.Add(port);
         }
 
         private void OnDeleteClicked()
         {
-            OnDelete?.Invoke(this);
+            this.OnDelete?.Invoke(this);
         }
 
         public string GetText()
         {
-            return _textAnswer.value;
+            return this.textAnswer.value;
         }
     }
 }
