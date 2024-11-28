@@ -9,6 +9,7 @@ namespace Lessons.Meta.Lesson_Inventory
 
         public int MaxHitPoints;
         public float Mana;
+        public int Damage;
         
         public void Awake()
         {

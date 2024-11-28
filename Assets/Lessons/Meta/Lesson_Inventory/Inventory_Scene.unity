@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641192, b: 0.5748165, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -350,11 +350,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1556357546}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 493edc0dd4b14f6684d1417964f2121b, type: 3}
+  m_Script: {fileID: 11500000, guid: bf43f71d59824c6bbde9e5ec8715e20d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Hero: {fileID: 1685628598}
-  ItemConfig: {fileID: 0}
+  Inventory:
+    Items: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &1685628597
 GameObject:
   m_ObjectHideFlags: 0
@@ -386,6 +390,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHitPoints: 5
   Mana: 10
+  Damage: 0
 --- !u!4 &1685628599
 Transform:
   m_ObjectHideFlags: 0
