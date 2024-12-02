@@ -19,11 +19,11 @@ MonoBehaviour:
       Icon: {fileID: 21300000, guid: c34cd61ed96ff9a40a54e159467c5155, type: 3}
     Flags: 1
     ItemComponents:
-    - rid: 2558813798211780608
+    - rid: 6244503729244733443
   references:
     version: 2
     RefIds:
-    - rid: 2558813798211780608
-      type: {class: SwordComponent, ns: Lessons.Meta.Lesson_Inventory, asm: Assembly-CSharp}
+    - rid: 6244503729244733443
+      type: {class: SwordComponent, ns: Lessons.Meta.Lesson_Inventory, asm: Lessons}
       data:
         Damage: 2

@@ -19,17 +19,17 @@ MonoBehaviour:
       Icon: {fileID: 21300000, guid: c34cd61ed96ff9a40a54e159467c5155, type: 3}
     Flags: 6
     ItemComponents:
-    - rid: 2558813798211780611
-    - rid: 2558813798211780617
+    - rid: 6244503729244733442
+    - rid: 6244503729244733441
   references:
     version: 2
     RefIds:
-    - rid: 2558813798211780611
-      type: {class: ManaComponent, ns: Lessons.Meta.Lesson_Inventory, asm: Assembly-CSharp}
-      data:
-        Mana: 3
-    - rid: 2558813798211780617
-      type: {class: StackComponent, ns: Lessons.Meta.Lesson_Inventory, asm: Assembly-CSharp}
+    - rid: 6244503729244733441
+      type: {class: StackComponent, ns: Lessons.Meta.Lesson_Inventory, asm: Lessons}
       data:
         Count: 0
         MaxCount: 5
+    - rid: 6244503729244733442
+      type: {class: ManaComponent, ns: Lessons.Meta.Lesson_Inventory, asm: Lessons}
+      data:
+        Mana: 3

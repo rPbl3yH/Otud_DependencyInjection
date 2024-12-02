@@ -16,6 +16,18 @@ namespace Lessons.Meta.Lesson_Inventory
         [SerializeReference]
         public IItemComponent[] ItemComponents;
 
+        public InventoryItem()
+        {
+        }
+
+        public InventoryItem(string name, InventoryItemFlags flags = InventoryItemFlags.None,
+            IItemComponent[] itemComponents = null)
+        {
+            Name = name;
+            Flags = flags;
+            ItemComponents = itemComponents;
+        }
+
         public InventoryItem Clone()
         {
             var item = new InventoryItem()

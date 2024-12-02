@@ -16,13 +16,20 @@ namespace Lessons.Meta.Lesson_Inventory
 
         public void AddItem(InventoryItem prototype)
         {
-            InventoryAddUseCases.AddItem(this, prototype);
             StackableInventoryAddUseCases.AddItem(this, prototype);
         }
 
         public bool RemoveItem(InventoryItem prototype)
         {
             return InventoryRemoveUseCases.RemoveItem(this, prototype);
+        }
+
+        public void RemoveItems(InventoryItem prototype, int count)
+        {
+            for (int i = 0; i < count; i++)
+            {
+                RemoveItem(prototype);
+            }
         }
 
         public void Remove(InventoryItem item)
@@ -60,6 +67,35 @@ namespace Lessons.Meta.Lesson_Inventory
         {
             var resultItem = Items.LastOrDefault(item => item.Name == prototype.Name);
             return resultItem;
+        }
+
+        public int GetCount(string name)
+        {
+            var count = 0;
+            
+            foreach (var item in Items)
+            {
+                if (item.Name == name)
+                {
+                    if (InventoryUseCases.CanStackable(item))
+                    {
+                        var stackComponent = item.GetComponent<StackComponent>();
+                        count += stackComponent.Count;
+                    }
+                    else
+                    {
+                        count++;
+                    }
+                }
+            }
+            
+            return count;
+        }
+
+        public bool HasItems(string itemName, int count)
+        {
+            var itemCount = GetCount(itemName);
+            return itemCount >= count;
         }
     }
 
@@ -162,7 +198,7 @@ namespace Lessons.Meta.Lesson_Inventory
             }
         }
 
-        private static bool CanStackable(InventoryItem inventoryItem)
+        public static bool CanStackable(InventoryItem inventoryItem)
         {
             return (inventoryItem.Flags & InventoryItemFlags.Stackable) == InventoryItemFlags.Stackable;
         }
