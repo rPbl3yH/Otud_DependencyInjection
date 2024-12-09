@@ -1,3 +1,5 @@
+using System;
+
 namespace Lessons.Meta.Lesson_Inventory
 {
     public interface IItemComponent
@@ -5,9 +7,19 @@ namespace Lessons.Meta.Lesson_Inventory
         IItemComponent Clone();
     }
 
-    public interface IEffectibleComponent
+    [Serializable]
+    public class StackComponent : IItemComponent
     {
-        void Apply();
-        void Discard();
+        public int Count = 0;
+        public int MaxCount = 5;
+        
+        public IItemComponent Clone()
+        {
+            return new StackComponent()
+            {
+                Count = Count,
+                MaxCount = MaxCount,
+            };
+        }
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Lessons.Meta.Lesson_Inventory
@@ -8,58 +9,85 @@ namespace Lessons.Meta.Lesson_Inventory
     public class InventoryItem
     {
         public string Name;
-        
-        //Meta Data
-        public string Description;
-        public Sprite Icon;
+        public ItemMetaData MetaData;
 
-        public ItemFlags Flags;
+        public InventoryItemFlags Flags;
 
         [SerializeReference]
-        public List<IItemComponent> ItemComponents = new List<IItemComponent>();
+        public IItemComponent[] ItemComponents;
 
-        public IReadOnlyList<IItemComponent> GetComponents()
+        public InventoryItem()
         {
-            return ItemComponents;
         }
 
-        public bool TryGetComponent<T>(out T component)
+        public InventoryItem(string name, InventoryItemFlags flags = InventoryItemFlags.None,
+            IItemComponent[] itemComponents = null)
         {
-            foreach (IItemComponent itemComponent in ItemComponents)
-            {
-                if (itemComponent is T tComponent)
-                {
-                    component = tComponent;
-                    return true;
-                }
-            }
-
-            component = default;
-            return false;
+            Name = name;
+            Flags = flags;
+            ItemComponents = itemComponents;
         }
 
         public InventoryItem Clone()
         {
-            return new InventoryItem()
+            var item = new InventoryItem()
             {
                 Name = Name,
-                Description = Description,
-                Icon = Icon,
                 Flags = Flags,
-                ItemComponents = CloneComponents(),
+                MetaData = CloneMetadata(),
+                ItemComponents = CloneComponents()
+            };
+
+            return item;
+        }
+
+        public T GetComponent<T>() where T : IItemComponent
+        {
+            foreach (var itemComponent in ItemComponents)
+            {
+                if (itemComponent is T component)
+                {
+                    return component;
+                }
+            }
+
+            return default;
+        }
+
+        private ItemMetaData CloneMetadata()
+        {
+            return new ItemMetaData()
+            {
+                Description = MetaData.Description,
+                Icon = MetaData.Icon,
             };
         }
 
-        private List<IItemComponent> CloneComponents()
+        private IItemComponent[] CloneComponents()
         {
             var list = new List<IItemComponent>();
-
+            
             foreach (IItemComponent itemComponent in ItemComponents)
             {
-                list.Add(itemComponent.Clone());
+                list.Add(itemComponent.Clone());    
             }
 
-            return list;
+            return list.ToArray();
+        }
+
+        public bool TryGetComponent<T>(out T resultComponent)
+        {
+            foreach (var itemComponent in ItemComponents)
+            {
+                if (itemComponent is T component)
+                {
+                    resultComponent = component;
+                    return true;
+                }
+            }
+
+            resultComponent = default;
+            return false;
         }
     }
 }
