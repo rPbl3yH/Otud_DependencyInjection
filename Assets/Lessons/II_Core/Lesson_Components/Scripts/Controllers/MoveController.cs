@@ -5,7 +5,9 @@ namespace Lessons.Lesson_Components
 {
     public class MoveController : MonoBehaviour
     {
-        [SerializeField] private Character _character;
+        // [SerializeField] private Character _character;
+        [SerializeField] private MoveComponent _moveComponent;
+        [SerializeField] private RotateComponent _rotateComponent;
 
         private void Update()
         {
@@ -36,7 +38,9 @@ namespace Lessons.Lesson_Components
         
         private void Move(Vector3 direction)
         {
-            _character.Move(direction);
+            _moveComponent.SetDirection(direction);
+            _rotateComponent.SetDirection(direction);
+            // _character.Move(direction);
         }
     }
 }
