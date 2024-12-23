@@ -3,27 +3,29 @@ using UnityEngine.UIElements;
 
 namespace Modules.Dialogues
 {
-    public class DialogueWindow : EditorWindow
+    public sealed class DialogueWindow : EditorWindow
     {
-        private DialogueGraphView _graphView;
+        private DialogueGraphView graphView;
+        
+         private void CreateGUI()
+         {
+             this.CreateGraph();
+             this.CreateToolbar();
+         }
 
-        private void CreateGUI()
-        {
-            CreateGraph();
-            CreateToolbar();
-        }
-
-        private void CreateToolbar()
-        {
-            DialogueToolbar toolbar = new DialogueToolbar(_graphView);
-            rootVisualElement.Add(toolbar);
-        }
-
-        private void CreateGraph()
-        {
-            _graphView = new DialogueGraphView();
-            _graphView.StretchToParentSize();
-            rootVisualElement.Insert(0, _graphView);
-        }
+         private void CreateGraph()
+         {
+             this.graphView = new DialogueGraphView();
+             this.graphView.StretchToParentSize();
+             this.rootVisualElement.Insert(0, graphView);
+         }
+         
+         private void CreateToolbar()
+         {
+             DialogueToolbar toolbar = new DialogueToolbar(this.graphView);
+             this.rootVisualElement.Add(toolbar);
+         }
     }
 }
+
+

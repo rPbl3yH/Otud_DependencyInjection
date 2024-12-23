@@ -8,66 +8,66 @@ namespace Modules.Dialogues
 {
     public sealed class DialogueNodeView : Node
     {
-        private readonly string _id;
-        private readonly List<DialogueChoiceView> _choices;
+        private readonly string id;
+        private readonly List<DialogueChoiceView> choices;
         
-        private TextField _textMessage;
-        private Port _inputPort;
-        private bool _isRoot;
+        private TextField textMessage;
+        private Port inputPort;
+        private bool isRoot;
         
         public DialogueNodeView(string id)
         {
-            _id = id;
-            title = "Dialogue Node";
-            _choices = new List<DialogueChoiceView>();
+            this.id = id;
+            this.title = "Dialogue Node";
+            this.choices = new List<DialogueChoiceView>();
             
-            CreateTextMessage();
-            CreatePortInput();
-            CreateButtonAddChoice();
-            ApplyStyles();
-            RefreshExpandedState();
+            this.CreateTextMessage();
+            this.CreatePortInput();
+            this.CreateButtonAddChoice();
+            this.ApplyStyles();
+            this.RefreshExpandedState();
         }
         
         public string GetId()
         {
-            return _id;
+            return this.id;
         }
 
         public string GetMessage()
         {
-            return _textMessage.value;
+            return this.textMessage.value;
         }
 
         public void SetMessage(string message)
         {
-            _textMessage.value = message;
+            this.textMessage.value = message;
         }
 
         public DialogueChoiceView[] GetChoices()
         {
-            return _choices.ToArray();
+            return this.choices.ToArray();
         }
         
         public void CreateChoice(string answer)
         {
             DialogueChoiceView choice = new DialogueChoiceView(answer);
-            choice.OnDelete += DeleteChoice;
-            _choices.Add(choice);
-            outputContainer.Add(choice);
-            RefreshExpandedState();
+            choice.OnDelete += this.DeleteChoice;
+            this.choices.Add(choice);
+            this.outputContainer.Add(choice);
+            this.RefreshExpandedState();
         }
-
+        
         public void DeleteChoice(DialogueChoiceView choice)
         {
-            choice.OnDelete -= DeleteChoice;
-            _choices.Remove(choice);
-            outputContainer.Remove(choice);
-            RefreshExpandedState();
+            choice.OnDelete -= this.DeleteChoice;
+            this.choices.Remove(choice);
+            this.outputContainer.Remove(choice);
+            this.RefreshExpandedState();
         }
 
         private void ApplyStyles()
         {
-            mainContainer.AddToClassList("dialogue_node_main-container");
+            this.mainContainer.AddToClassList("dialogue_node_main-container");
         }
 
         private void CreateButtonAddChoice()
@@ -75,73 +75,73 @@ namespace Modules.Dialogues
             Button button = new Button
             {
                 text = "Add Choice",
-                clickable = new Clickable(OnCreateChoiceClicked)
+                clickable = new Clickable(this.OnCreateChoiceClicked)
             };
             
             button.AddToClassList("dialogue-node-add-choice-button");
-            mainContainer.Add(button);
+            this.mainContainer.Add(button);
         }
 
         private void OnCreateChoiceClicked()
         {
-           CreateChoice("Enter Answer...");
+           this.CreateChoice("Enter Answer...");
         }
         
-       
         private void CreatePortInput()
         {
-            _inputPort = Port.Create<DialogueEdgeView>(Orientation.Horizontal, Direction.Input, Port.Capacity.Multi, null);
-            _inputPort.portName = "Input";
-            inputContainer.Add(_inputPort);
+            //TODO:
+            this.inputPort = Port.Create<DialogueEdgeView>(Orientation.Horizontal, Direction.Input, Port.Capacity.Multi, null);
+            this.inputPort.portName = "Input";
+            this.inputContainer.Add(this.inputPort);
         }
 
         private void CreateTextMessage()
         {
-            _textMessage = new TextField
+            this.textMessage = new TextField
             {
                 value = "Enter Message",
                 multiline = true
             };
             
-            _textMessage.AddToClassList("dialogue-node-text-message");
-            extensionContainer.Add(_textMessage);
+            this.textMessage.AddToClassList("dialogue-node-text-message");
+            this.extensionContainer.Add(this.textMessage);
         }
 
         public int IndexOfOutputPort(Port port)
         {
-            for (var i = 0; i < _choices.Count; i++)
+            for (var i = 0; i < this.choices.Count; i++)
             {
-                var choice = _choices[i];
+                var choice = this.choices[i];
                 if (choice.IsPort(port))
                 {
                     return i;
                 }
             }
-
+        
             throw new Exception("Index of port is not found!");
         }
-
+        
         public Port GetOutputPort(int index)
         {
-            return _choices[index].GetPort();
+            return this.choices[index].GetPort();
         }
-
+        
         public Port GetInputPort()
         {
-            return _inputPort;
+            return this.inputPort;
         }
 
         public void SetRoot(bool isRoot)
         {
-            _isRoot = isRoot;
-            style.backgroundColor = isRoot 
+            this.isRoot = isRoot;
+            this.style.backgroundColor = isRoot 
                 ? new Color(0.92f, 0.76f, 0f) 
                 : new Color(0.53f, 0.53f, 0.56f);
         }
 
         public bool IsRoot()
         {
-            return _isRoot;
+            return this.isRoot;
         }
     }
 }
