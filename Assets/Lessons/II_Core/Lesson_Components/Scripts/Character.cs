@@ -67,5 +67,4 @@ namespace Lessons.Lesson_Components
             Debug.Log("Fire!");
         }
     }
-
 }
