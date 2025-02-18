@@ -10,8 +10,8 @@ namespace Lessons.Lesson_DI
         [SerializeField]
         private Camera _targetCamera;
 
-        [Inject]
-        private ICharacter _character;
+        [SerializeField] 
+        private Character _character;
 
         private void LateUpdate()
         {
