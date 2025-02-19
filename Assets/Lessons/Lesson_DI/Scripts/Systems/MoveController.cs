@@ -4,10 +4,15 @@ namespace Lessons.Lesson_DI
 {
     public sealed class MoveController : MonoBehaviour
     {
-        [SerializeField]
-        private Character _character;
-        [SerializeField]
+        private ICharacter _character;
         private MoveInput _moveInput;
+
+        [Inject]
+        public void Construct(ICharacter character, MoveInput moveInput)
+        {
+            _character = character;
+            _moveInput = moveInput;
+        }
         
         private void Update()
         {
