@@ -1,192 +1,89 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Sirenix.Utilities.Editor;
 
 namespace Lessons.Meta.Lesson_Inventory
 {
+    //Facade
     [Serializable]
     public class Inventory
     {
         public event Action<InventoryItem> OnItemAdded;
         public event Action<InventoryItem> OnItemRemoved;
+
         public event Action<InventoryItem> OnItemConsumed; 
         
         public List<InventoryItem> Items = new();
 
-        public void AddItem(InventoryItem prototype)
+        private InventoryItemAdder _inventoryItemAdder;
+        private InventoryItemRemover _inventoryItemRemover;
+
+        private List<IInventoryObserver> _inventoryObservers;
+        
+        public Inventory()
         {
-            InventoryAddUseCases.AddItem(this, prototype);
-            StackableInventoryAddUseCases.AddItem(this, prototype);
+            _inventoryItemAdder = new InventoryItemAdder(this);
+            _inventoryItemRemover = new InventoryItemRemover(this);
         }
 
-        public bool RemoveItem(InventoryItem prototype)
-        {
-            return InventoryRemoveUseCases.RemoveItem(this, prototype);
-        }
+        public void NotifyAddItem(InventoryItem item) => OnItemAdded?.Invoke(item);
 
-        public void Remove(InventoryItem item)
-        {
-            Items.Remove(item);
-        }
+        public void NotifyRemoveItem(InventoryItem item) => OnItemRemoved?.Invoke(item);
 
-        public InventoryItem FindItem(InventoryItem prototype)
-        {
-            var resultItem = Items.FirstOrDefault(item => item.Name == prototype.Name);
-            return resultItem;
-        }
-
-        public void NotifyRemove(InventoryItem item)
-        {
-            OnItemRemoved?.Invoke(item);
-        }
-
-        public void ConsumeItem(InventoryItem item)
-        {
-            InventoryUseCases.ConsumeItem(this, item);
-        }
-
-        public void NotifyConsume(InventoryItem item)
-        {
-            OnItemConsumed?.Invoke(item);
-        }
-
-        public void Add(InventoryItem item)
-        {
-            Items.Add(item);
-        }
-
-        public InventoryItem FindLastItem(InventoryItem prototype)
-        {
-            var resultItem = Items.LastOrDefault(item => item.Name == prototype.Name);
-            return resultItem;
-        }
+        public void NotifyConsumeItem(InventoryItem item) => OnItemConsumed?.Invoke(item);
     }
 
-    public static class InventoryAddUseCases
+    public class InventoryUseCases
     {
-        public static void AddItem(Inventory inventory, InventoryItem prototype)
+        public static void AddItem(Inventory inventory, InventoryItem item)
         {
-            inventory.Add(prototype);
-        }
-    }
-
-    public static class StackableInventoryAddUseCases
-    {
-        public static void AddItem(Inventory inventory, InventoryItem prototype)
-        {
-            if (!CanStackable(prototype))
-            {
-                inventory.Add(prototype);
-                return;
-            }
-            
-            var lastItem = FindLastItem(inventory, prototype);
-
-            if (lastItem == null)
-            {
-                inventory.Add(prototype);
-                prototype.GetComponent<StackComponent>().Count = 1;
-                return;
-            }
-
-            if (lastItem.TryGetComponent<StackComponent>(out var stackComponent))
-            {
-                if (stackComponent.Count == stackComponent.MaxCount)
-                {
-                    inventory.Add(prototype);
-                    prototype.GetComponent<StackComponent>().Count = 1;
-                    return;
-                }
-
-                stackComponent.Count++;
-            }
+            inventory.Items.Add(item);
+            inventory.NotifyAddItem(item);
         }
         
-        private static bool CanStackable(InventoryItem inventoryItem)
+        public static void AddItem(Inventory inventory, InventoryItemConfig itemConfig)
         {
-            return (inventoryItem.Flags & InventoryItemFlags.Stackable) == InventoryItemFlags.Stackable;
+            var item = itemConfig.Prototype.Clone();
+            AddItem(inventory, item);
         }
 
-        private static InventoryItem FindLastItem(Inventory inventory, InventoryItem prototype)
+        public static void RemoveItem(Inventory inventory, InventoryItemConfig config)
         {
-            return inventory.FindLastItem(prototype);
-        }
-    }
+            var inventoryItem = inventory.Items.FirstOrDefault(inventoryItem => inventoryItem.Id == config.Prototype.Id);
 
-    public static class InventoryUseCases
-    {
-        public static void ConsumeItem(Inventory inventory, InventoryItem item)
-        {
-            if (CanConsume(item) && inventory.RemoveItem(item))
+            if (inventoryItem == null)
             {
-                inventory.NotifyConsume(item);
-            }
-        }
-
-        private static bool CanConsume(InventoryItem item)
-        {
-            //0010 = Consumable
-            //0100 & 0010 == 0010
-            //0000 == 0010
-            return (item.Flags & InventoryItemFlags.Consumable) == InventoryItemFlags.Consumable;
-        }
-
-        public static void AddItem(Inventory inventory, InventoryItem prototype)
-        {
-            if (!CanStackable(prototype))
-            {
-                inventory.Add(prototype);
                 return;
             }
+
+            inventory.Items.Remove(inventoryItem);
+            inventory.NotifyRemoveItem(inventoryItem);
+        }
+
+        public static void ConsumeItem(Inventory inventory, InventoryItemConfig itemConfig)
+        {
+            var item = itemConfig.Prototype;
             
-            var lastItem = FindLastItem(inventory, prototype);
-
-            if (lastItem == null)
+            if (CanConsume(item))
             {
-                inventory.Add(prototype);
-                prototype.GetComponent<StackComponent>().Count = 1;
-                return;
-            }
-
-            if (lastItem.TryGetComponent<StackComponent>(out var stackComponent))
-            {
-                if (stackComponent.Count == stackComponent.MaxCount)
-                {
-                    inventory.Add(prototype);
-                    prototype.GetComponent<StackComponent>().Count = 1;
-                    return;
-                }
-
-                stackComponent.Count++;
+                RemoveItem(inventory, itemConfig);
+                inventory.NotifyConsumeItem(item);
             }
         }
 
-        private static bool CanStackable(InventoryItem inventoryItem)
+        public static bool CanConsume(InventoryItem item)
         {
-            return (inventoryItem.Flags & InventoryItemFlags.Stackable) == InventoryItemFlags.Stackable;
+            return HasFlag(item, ItemFlags.Consumable);
+        }
+        
+        public static bool HasFlag(InventoryItem item, ItemFlags itemFlags)
+        {
+            return (item.Flags & itemFlags) == itemFlags;
         }
 
-        private static InventoryItem FindLastItem(Inventory inventory, InventoryItem prototype)
+        public static int Sum(int a, int b)
         {
-            return inventory.FindLastItem(prototype);
-        }
-    }
-
-    public static class InventoryRemoveUseCases
-    {
-        public static bool RemoveItem(Inventory inventory, InventoryItem prototype)
-        {
-            var resultItem = inventory.FindItem(prototype);
-
-            if (resultItem == null)
-            {
-                return false;
-            }
-
-            inventory.Remove(resultItem);
-            inventory.NotifyRemove(resultItem);
-            return true;
+            return a + b;
         }
     }
 }
