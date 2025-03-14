@@ -7,22 +7,37 @@ namespace Lessons.Meta.Lesson_Inventory
     public class InventoryItem
     {
         public string Id;
-        public InventoryItemMetaData MetaData;
+        public InventoryItemMetaData MetaData = new();
         public ItemFlags Flags;
         
         [SerializeReference]
         public IItemComponent[] Components;
+
+        public InventoryItem()
+        {
+            
+        }
         
+        public InventoryItem(string id)
+        {
+            Id = id;
+        }
+
         public InventoryItem Clone()
         {
-            var copiedComponents = new IItemComponent[Components.Length];
+            var copiedComponents = Array.Empty<IItemComponent>();
 
-            for (var index = 0; index < Components.Length; index++)
+            if (Components != null)
             {
-                IItemComponent component = Components[index];
-                copiedComponents[index] = component.Clone();
-            }
+                copiedComponents = new IItemComponent[Components.Length];
 
+                for (var index = 0; index < Components.Length; index++)
+                {
+                    IItemComponent component = Components[index];
+                    copiedComponents[index] = component.Clone();
+                }
+            }
+            
             return new InventoryItem()
             {
                 Id = Id,

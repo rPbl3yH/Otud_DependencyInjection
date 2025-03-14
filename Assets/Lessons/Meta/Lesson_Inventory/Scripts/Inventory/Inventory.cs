@@ -47,6 +47,19 @@ namespace Lessons.Meta.Lesson_Inventory
             AddItem(inventory, item);
         }
 
+        public static void RemoveItem(Inventory inventory, InventoryItem item)
+        {
+            var inventoryItem = inventory.Items.FirstOrDefault(inventoryItem => inventoryItem.Id == item.Id);
+            
+            if (inventoryItem == null)
+            {
+                return;
+            }
+
+            inventory.Items.Remove(inventoryItem);
+            inventory.NotifyRemoveItem(inventoryItem);
+        }
+
         public static void RemoveItem(Inventory inventory, InventoryItemConfig config)
         {
             var inventoryItem = inventory.Items.FirstOrDefault(inventoryItem => inventoryItem.Id == config.Prototype.Id);
@@ -84,6 +97,16 @@ namespace Lessons.Meta.Lesson_Inventory
         public static int Sum(int a, int b)
         {
             return a + b;
+        }
+
+        public static bool HasItem(Inventory inventory, InventoryItem item)
+        {
+            return inventory.Items.Any(inventoryItem => inventoryItem.Id == item.Id);
+        }
+
+        public static int GetItemCount(Inventory inventory, InventoryItem item)
+        {
+            return inventory.Items.Count(inventoryItem => inventoryItem.Id == item.Id);
         }
     }
 }
