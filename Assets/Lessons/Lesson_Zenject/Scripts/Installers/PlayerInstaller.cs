@@ -18,12 +18,12 @@ namespace Lessons.Lesson_Zenject
             Container.BindInterfacesTo<CameraFollower>().AsSingle();
             Container.BindInterfacesTo<MoveController>().AsSingle();
             
-            Container.BindInterfacesAndSelfTo<Character>()
-                .FromComponentInNewPrefab(_characterPrefab, new GameObjectCreationParameters()
-                {
-                    Name = _name,
-                    ParentTransform = _spawnPoint,
-                }).AsCached();
+            // Container.BindInterfacesAndSelfTo<Character>()
+            //     .FromComponentInNewPrefab(_characterPrefab, new GameObjectCreationParameters()
+            //     {
+            //         Name = _name,
+            //         ParentTransform = _spawnPoint,
+            //     }).AsCached();
         }
     }
 }

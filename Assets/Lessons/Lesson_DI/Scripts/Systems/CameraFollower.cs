@@ -10,9 +10,15 @@ namespace Lessons.Lesson_DI
         [SerializeField]
         private Camera _targetCamera;
 
-        [Inject]
+        // [SerializeField] 
         private ICharacter _character;
 
+        [Inject]
+        public void Construct(ICharacter character)
+        {
+            _character = character;
+        }
+        
         private void LateUpdate()
         {
             var cameraPosition = _character.GetPosition() + _offset;

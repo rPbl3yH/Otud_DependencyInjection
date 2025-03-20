@@ -25,16 +25,4 @@ namespace Lessons.Lesson_Zenject
 
         }
     }
-
-    public class BulletSpawner : MonoBehaviour
-    {
-        [SerializeField] private GameObject _bulletPrefab;
-
-        [Inject] private DiContainer _diContainer;
-
-        public void Spawn()
-        {
-            var bullet = _diContainer.InstantiatePrefab(_bulletPrefab);
-        }
-    }
 }
