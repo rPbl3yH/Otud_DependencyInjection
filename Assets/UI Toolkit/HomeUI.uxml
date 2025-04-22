@@ -1,5 +1,0 @@
-<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
-    <ui:VisualElement name="DialogueGraphView" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
-        <ui:VisualElement name="GridBackground" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);" />
-    </ui:VisualElement>
-</ui:UXML>

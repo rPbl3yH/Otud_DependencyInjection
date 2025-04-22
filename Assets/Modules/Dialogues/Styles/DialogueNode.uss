@@ -3,9 +3,9 @@
     width: 100;
 }
 
-.dialogue_node_main-container 
+.dialogue_node_main-container
 {
-    background-color: #999999;
+    background-color: #1D1D1E;
 }
 
 .dialogue-node-text-message

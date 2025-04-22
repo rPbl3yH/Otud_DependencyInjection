@@ -27,7 +27,6 @@ namespace Modules.Dialogues
                 text = "X",
                 clickable = new Clickable(this.OnDeleteClicked)
             };
-            
             button.AddToClassList("dialogue-node-remove-choice-button");
             this.Add(button);
         }
@@ -50,7 +49,7 @@ namespace Modules.Dialogues
         {
             return this.port;
         }
-        
+
         public bool IsPort(Port port)
         {
             return this.port == port;
@@ -67,7 +66,7 @@ namespace Modules.Dialogues
         {
             this.OnDelete?.Invoke(this);
         }
-        
+
         public string GetText()
         {
             return this.textAnswer.value;
