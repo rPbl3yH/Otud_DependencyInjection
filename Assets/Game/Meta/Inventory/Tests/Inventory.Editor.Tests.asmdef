@@ -1,0 +1,20 @@
+{
+    "name": "Inventory.Editor.Tests",
+    "rootNamespace": "",
+    "references": [
+        "GUID:a7202d8826f024dae89dde787a42c3f2"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll"
+    ],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
