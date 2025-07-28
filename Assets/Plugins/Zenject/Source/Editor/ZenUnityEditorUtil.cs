@@ -28,7 +28,7 @@ namespace Zenject.Internal
                 }
                 catch (Exception e)
                 {
-                    Log.ErrorException(e);
+                    ModestTree.Log.ErrorException(e);
                     return false;
                 }
                 finally
@@ -69,7 +69,7 @@ namespace Zenject.Internal
             }
             catch (Exception e)
             {
-                Log.ErrorException(e);
+                ModestTree.Log.ErrorException(e);
                 encounteredError = true;
             }
             finally

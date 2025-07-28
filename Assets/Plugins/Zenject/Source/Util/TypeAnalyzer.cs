@@ -202,7 +202,7 @@ namespace Zenject
 #if !(UNITY_WSA && ENABLE_DOTNET) || UNITY_EDITOR
             if (ReflectionBakingCoverageMode == ReflectionBakingCoverageModes.FallbackToDirectReflectionWithWarning)
             {
-                Log.Warn("No reflection baking information found for type '{0}' - using more costly direct reflection instead", type);
+                ModestTree.Log.Warn("No reflection baking information found for type '{0}' - using more costly direct reflection instead", type);
             }
 #endif
 

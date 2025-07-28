@@ -102,7 +102,7 @@ namespace Zenject
             }
             catch (Exception e)
             {
-                Log.ErrorException(e);
+                ModestTree.Log.ErrorException(e);
                 _fatalError = e;
             }
 
@@ -139,7 +139,7 @@ namespace Zenject
                 }
                 catch (Exception e)
                 {
-                    Log.ErrorException(e);
+                    ModestTree.Log.ErrorException(e);
                     _fatalError = e;
                 }
             }

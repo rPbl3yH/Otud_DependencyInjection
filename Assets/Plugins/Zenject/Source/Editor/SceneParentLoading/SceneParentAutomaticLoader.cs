@@ -222,7 +222,7 @@ namespace Zenject.Internal
                 {
                     if (info.ContractName.Trim().IsEmpty())
                     {
-                        Log.Warn("Found empty contract name in default scene contract config at path '{0}'", AssetDatabase.GetAssetPath(config));
+                        ModestTree.Log.Warn("Found empty contract name in default scene contract config at path '{0}'", AssetDatabase.GetAssetPath(config));
                         continue;
                     }
 

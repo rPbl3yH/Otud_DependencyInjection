@@ -260,7 +260,7 @@ namespace Zenject.Internal
             ZenUnityEditorUtil.SaveThenRunPreserveSceneSetup(() =>
                 {
                     var numValidated = ZenUnityEditorUtil.ValidateAllActiveScenes();
-                    Log.Info("Validated all '{0}' active scenes successfully", numValidated);
+                    ModestTree.Log.Info("Validated all '{0}' active scenes successfully", numValidated);
                 });
         }
 
@@ -270,7 +270,7 @@ namespace Zenject.Internal
                 {
                     SceneParentAutomaticLoader.ValidateMultiSceneSetupAndLoadDefaultSceneParents();
                     ZenUnityEditorUtil.ValidateCurrentSceneSetup();
-                    Log.Info("All scenes validated successfully");
+                    ModestTree.Log.Info("All scenes validated successfully");
                 });
         }
 

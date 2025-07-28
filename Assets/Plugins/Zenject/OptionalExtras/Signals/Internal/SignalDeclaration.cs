@@ -111,7 +111,7 @@ namespace Zenject
             {
                 if (_missingHandlerResponses == SignalMissingHandlerResponses.Warn)
                 {
-                    Log.Warn("Fired signal '{0}' but no subscriptions found!  If this is intentional then either add OptionalSubscriber() to the binding or change the default in ZenjectSettings", signal.GetType());
+                    ModestTree.Log.Warn("Fired signal '{0}' but no subscriptions found!  If this is intentional then either add OptionalSubscriber() to the binding or change the default in ZenjectSettings", signal.GetType());
                 }
                 else if (_missingHandlerResponses == SignalMissingHandlerResponses.Throw)
                 {

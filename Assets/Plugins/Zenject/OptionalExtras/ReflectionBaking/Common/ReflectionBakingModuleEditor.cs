@@ -75,7 +75,7 @@ namespace Zenject.ReflectionBaking
 
                 if (actualType == null)
                 {
-                    Log.Warn("Could not find actual type for type '{0}', skipping", typeDef.FullName);
+                    ModestTree.Log.Warn("Could not find actual type for type '{0}', skipping", typeDef.FullName);
                     continue;
                 }
 
@@ -153,7 +153,7 @@ namespace Zenject.ReflectionBaking
             }
             catch (Exception e)
             {
-                Log.ErrorException("Error when modifying type '{0}'".Fmt(actualType), e);
+                ModestTree.Log.ErrorException("Error when modifying type '{0}'".Fmt(actualType), e);
                 throw;
             }
 
