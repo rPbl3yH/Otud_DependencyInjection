@@ -18,7 +18,7 @@ public class PlayerEnemyCombatIntegrationTests
         playerAttack.SetTarget(enemy);
         playerAttack.Attack();
 
-        yield return new WaitForSeconds(0.5f); // ждём завершения анимации атаки
+        yield return new WaitForSeconds(0.5f); // ждём, например, завершения анимации атаки
 
         Assert.Less(enemyHealth.CurrentHealth, 100);
     }

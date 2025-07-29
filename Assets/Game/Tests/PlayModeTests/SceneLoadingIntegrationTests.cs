@@ -28,7 +28,6 @@ public class SceneLoadingIntegrationTests
         // Загружаем MainMenu
         SceneManager.LoadScene("MainMenu");
         yield return new WaitUntil(() => SceneManager.GetActiveScene().name == "MainMenu");
-        yield return null; // подстраховка
 
         // Находим кнопку
         var startButtonObject = GameObject.Find("StartButton");
